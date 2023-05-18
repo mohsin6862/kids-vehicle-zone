@@ -45,7 +45,7 @@ const BannerCarousel = () => {
           <span className="text-red-500">We</span> <span className="text-green-500">Sell</span> <span className="text-blue-500">what</span> <span className="text-purple-500">you</span> <span className="text-yellow-500">want!</span>
         </p>
         <div className="mt-8">
-          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
+          <button className="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
             Explore Now
           </button>
         </div>
