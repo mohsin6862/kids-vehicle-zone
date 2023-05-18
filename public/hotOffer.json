@@ -1,0 +1,45 @@
+
+    [
+      {
+        "id": 1,
+        "title": "Premium Package",
+        "price": "$99",
+        "duration": "/month",
+        "image": "https://i.ibb.co/x7mZgQb/offer1.jpg",
+        "features1":"Priority customer support", 
+        "features2":"Access to exclusive features", 
+        "features3":"Unlimited product listings",
+        "features4":"30-day money-back guarantee"
+          
+          
+          
+          
+        
+      },
+      {
+        "id": 2,
+        "title": "Standard Package",
+        "price": "$49",
+        "duration": "/month",
+        "image": "https://i.ibb.co/wWRJhhB/offer2.jpg",
+        "features1":"Access to standard features", 
+        "features2": "Customer support", 
+        "features3":"Limited product listings",
+        "features4":"30-day money-back guarantee"
+        
+      },
+      {
+        "id": 3,
+        "title": "Regular Package",
+        "price": "$19",
+        "duration": "/month",
+        "image": "https://i.ibb.co/3FH3hK3/offer3.jpg",
+        "features1":"Access to basic features",
+        "features2": "Limited customer support",
+        "features3":"Limited product listings",
+        "features4":"30-day money-back guarantee"
+      
+      }
+    
+    ]
+  
