@@ -38,12 +38,17 @@ const BannerCarousel = () => {
         </Slider>
       </div>
       <div className="md:w-1/2 flex flex-col justify-center items-center p-8">
-        <h1 className="text-2xl md:text-4xl font-bold mb-4 animate-translate">
-          Welcome to our Fancy Carousel
+        <h1 className="text-3xl md:text-5xl font-bold text-center mb-4 animate-pulse text-blue-600">
+          Welcome to<br /> our <span className="text-purple-600">Kids Vehicle Zone</span>
         </h1>
-        <p className="text-lg md:text-xl animate-translate">
-          Enjoy the beautiful design and animated text!
+        <p className="text-lg md:text-xl animate-bounce text-yellow-500">
+          <span className="text-red-500">We</span> <span className="text-green-500">Sell</span> <span className="text-blue-500">what</span> <span className="text-purple-500">you</span> <span className="text-yellow-500">want!</span>
         </p>
+        <div className="mt-8">
+          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
+            Explore Now
+          </button>
+        </div>
       </div>
     </div>
   );
