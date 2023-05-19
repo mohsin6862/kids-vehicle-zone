@@ -5,6 +5,8 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import Cars from "../Pages/Cars/Cars";
 import Truck from "../Pages/Truck/Truck";
+import Collectors from "../Pages/Collectors/Collectors";
+import Blogs from "../Pages/Blogs/Blogs";
 const router = createBrowserRouter([
     {
       path: "/",
@@ -14,6 +16,12 @@ const router = createBrowserRouter([
 
             path:'/',
             element:<Home></Home>
+
+        },
+        {
+
+            path:'/blogs',
+            element:<Blogs></Blogs>
 
         },
         {
@@ -36,6 +44,12 @@ const router = createBrowserRouter([
             path:'/trucks',
             element:<Truck></Truck>,
             loader: ()=>fetch('http://localhost:5000/truck')
+
+        },
+        {
+            path:'/collectors',
+            element:<Collectors></Collectors>,
+            loader: ()=>fetch('http://localhost:5000/collectors')
 
         }
     ]
