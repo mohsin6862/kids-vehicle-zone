@@ -1,15 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import signUp from '../../assets/image/signUp.jpg'
 import signUp2 from '../../assets/image/signUp2.jpg'
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const SignUp = () => {
-    const handleSignUp =(event)=>{
-        event.preventDefault()
+  const {createUser}=useContext(AuthContext)
+  const handleSignUp=(event)=>{
+      event.preventDefault();
 
-    }
+      const form = event.target;
+      const name = form.name.value;
+      const email = form.email.value;
+      const password = form.password.value;
+      console.log(name,email,password)
+
+      createUser(email,password)
+      .then(result=>{
+        const newUser = result.user
+        console.log(newUser)
+      })
+      .catch(error=>{
+        console.log(error.message)
+      })
+
+     
+  }
     return (
-        <div className="hero min-h-screen bg-base-200">
+        <div className="hero min-h-screen bg-base-200 my-12">
         <div className="hero-content flex-col lg:flex-row">
           <div className="w-1/2 max-w-md mr-20">
            <img className='rounded-xl' src={signUp2} alt="" />

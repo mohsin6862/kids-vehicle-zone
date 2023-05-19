@@ -4,6 +4,7 @@ import HotDealSection from '../HotDealSection/HotDealSection';
 import ShopByCategory from '../ShopByCategory/shopByCategory';
 import FeaturedProduct from '../FeaturedProduct/FeaturedProduct';
 import CustomerReviewSection from '../CustomerReviewSection/CustomerReviewSection';
+import Contact from '../../Contact/Contact';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <ShopByCategory></ShopByCategory>
             <FeaturedProduct></FeaturedProduct>
             <CustomerReviewSection></CustomerReviewSection>
+            <Contact></Contact>
         </div>
     );
 };

@@ -1,15 +1,36 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import login2 from '../../assets/image/login2.jpg';
 import login1 from '../../assets/image/login1.jpg';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Login = () => {
-  const handleLogin = (event) => {
-    event.preventDefault();
-  };
+
+    const {LogIn}= useContext(AuthContext)
+    const location = useLocation()
+    const navigate = useNavigate()
+    const from = location.state?.from?.pathname || '/';
+  
+      const handleLogin=(event)=>{
+          event.preventDefault();
+          const form = event.target;
+          const email = form.email.value;
+          const password = form.password.value;
+          console.log(email,password)
+  
+          LogIn(email,password)
+          .then(result=>{
+            const loggedUser = result.user;
+            navigate(from,{replace:true})
+            console.log(loggedUser)
+          })
+          .catch(error=>{
+            console.log(error.message)
+          })
+        }
 
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="hero min-h-screen bg-base-200 my-12">
       <div className="hero-content flex-col lg:flex-row">
         <div className="w-1/2 mr-20">
           <img src={login2} alt="Login Image" className="w-full h-[480px] rounded" />

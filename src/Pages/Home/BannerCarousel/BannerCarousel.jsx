@@ -20,7 +20,7 @@ const BannerCarousel = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row md:items-center my-12">
+    <div className="flex flex-col md:flex-row md:items-center my-12 bg-base-200 p-8 rounded">
       <div className="md:w-1/2">
         <Slider {...settings}>
           <div>
