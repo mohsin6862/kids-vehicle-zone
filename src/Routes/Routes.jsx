@@ -8,6 +8,8 @@ import Truck from "../Pages/Truck/Truck";
 import Collectors from "../Pages/Collectors/Collectors";
 import Blogs from "../Pages/Blogs/Blogs";
 import AllVehicles from "../Pages/AllVehicles/AllVehicles";
+import ViewDetails from "../Pages/ViewDetails/ViewDetails";
+
 const router = createBrowserRouter([
     {
       path: "/",
@@ -57,6 +59,14 @@ const router = createBrowserRouter([
             path:'/allvehicles',
             element:<AllVehicles></AllVehicles>,
             loader: ()=>fetch('http://localhost:5000/allvehicles')
+
+        },
+        {
+            path:'/allvehicles/:id',
+            element:<ViewDetails></ViewDetails>,
+            loader:({params})=>fetch(`http://localhost:5000/allvehicles/${params.id}`)
+           
+
 
         }
     ]
