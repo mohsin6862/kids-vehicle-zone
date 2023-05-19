@@ -5,6 +5,7 @@ import ShopByCategory from '../ShopByCategory/shopByCategory';
 import FeaturedProduct from '../FeaturedProduct/FeaturedProduct';
 import CustomerReviewSection from '../CustomerReviewSection/CustomerReviewSection';
 import Contact from '../../Contact/Contact';
+import Gallery from '../Gallery/Gallery';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <HotDealSection></HotDealSection>
             <ShopByCategory></ShopByCategory>
             <FeaturedProduct></FeaturedProduct>
+            <Gallery></Gallery>
             <CustomerReviewSection></CustomerReviewSection>
             <Contact></Contact>
         </div>

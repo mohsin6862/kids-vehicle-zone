@@ -9,7 +9,7 @@ const FeaturedProduct = () => {
   const [featured, setFeatured] = useState([]);
 
   useEffect(() => {
-    fetch('/public/data/featured.json')
+    fetch('http://localhost:5000/featured')
       .then((res) => res.json())
       .then((data) => setFeatured(data));
   }, []);
