@@ -9,6 +9,7 @@ import Collectors from "../Pages/Collectors/Collectors";
 import Blogs from "../Pages/Blogs/Blogs";
 import AllVehicles from "../Pages/AllVehicles/AllVehicles";
 import ViewDetails from "../Pages/ViewDetails/ViewDetails";
+import AddVehicles from "../Pages/AddVehicles/AddVehicles";
 
 const router = createBrowserRouter([
     {
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
         {
             path:'/signup',
             element:<SignUp></SignUp>
+
+        },
+        {
+            path:'/addvehicles',
+            element:<AddVehicles></AddVehicles>
 
         },
         {
