@@ -1,5 +1,5 @@
 import React from 'react';
-import { RiArrowLeftFill, RiArrowRightFill } from 'react-icons/ri';
+import { RiArrowLeftFill,} from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
@@ -14,15 +14,15 @@ const AddVehicles = () => {
         const ratings = form.ratings.value;
         const stock = form.stock.value;
         const photo = form.photo.value;
-        const newvehicle = {name,title,description,price,ratings,stock,photo}
-        console.log(newvehicle)
+        const newVehicle = {name,title,description,price,ratings,stock,photo}
+        console.log(newVehicle)
          
         fetch('http://localhost:5000/addvehicle',{
           method:'POST',
           headers:{
             'content-type': 'application/json'
           },
-          body: JSON.stringify(newvehicle)
+          body: JSON.stringify(newVehicle)
         })
         .then(res => res.json())
         .then(data =>{
