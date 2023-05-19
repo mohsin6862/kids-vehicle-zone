@@ -4,7 +4,7 @@ import { RiStarSFill} from 'react-icons/ri';
 const HotDealSection = () => {
     const [offers,setOffers]= useState()
     useEffect(()=>{
-        fetch('/public/hotOffer.json')
+        fetch('/public/data/hotOffer.json')
         .then(res => res.json())
         .then(data => setOffers(data))
     },[])
