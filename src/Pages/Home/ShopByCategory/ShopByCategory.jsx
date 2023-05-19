@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 import car from '../../../assets/image/collector.jpeg';
-import truck from '../../../assets/image/Truck2.jpeg';
+import truck from '../../../assets/image/Truck2.jpeg'; 
 import collector from '../../../assets/image/car2.jpg';
 
 const ShopByCategory = () => {
@@ -14,14 +15,14 @@ const ShopByCategory = () => {
   };
 
   return (
-    <div className='my-8 w-full max-w-6xl mx-auto'>
-      <div>
-        <h1 className='text-6xl font-bold text-center text-amber-500'>Shop by Top Categories</h1>
+    <div className='my-8 w-full max-w-6xl mx-auto bg-base-300 p-5'>
+      <div className='flex justify-center'>
+        <h1 className='text-5xl font-bold text-amber-500'>Shop by Top Categories</h1>
       </div>
 
-      <div className='w-full ml-[400px] grid grid-cols-3 gap-16 mt-16'>
+      <div className='flex justify-center mt-8'>
         <Tabs>
-          <TabList className='flex justify-center space-x-20'>
+          <TabList className='flex justify-center space-x-6'>
             <Tab>
               <h3
                 className={`text-2xl font-bold text-center mt-4 cursor-pointer ${
@@ -55,7 +56,7 @@ const ShopByCategory = () => {
             <div className='flex flex-col items-center'>
               <div className='relative'>
                 <img
-                  className='w-72 h-60 rounded-lg hover:scale-105 transition-all duration-300 mt-16'
+                  className='w-72 h-60 rounded-lg hover:scale-105 transition-all duration-300 mt-6 sm:mt-16'
                   src={car}
                   alt=''
                 />
@@ -73,7 +74,7 @@ const ShopByCategory = () => {
             <div className='flex flex-col items-center'>
               <div className='relative'>
                 <img
-                  className='w-72 h-60 rounded-lg hover:scale-105 transition-all duration-300 mt-16'
+                  className='w-72 h-60 rounded-lg hover:scale-105 transition-all duration-300 mt-6 sm:mt-16'
                   src={truck}
                   alt=''
                 />
@@ -91,7 +92,7 @@ const ShopByCategory = () => {
             <div className='flex flex-col items-center'>
               <div className='relative'>
                 <img
-                  className='w-72 h-60 rounded-lg hover:scale-105 transition-all duration-300 mt-16'
+                  className='w-72 h-60 rounded-lg hover:scale-105 transition-all duration-300 mt-6 sm:mt-16'
                   src={collector}
                   alt=''
                 />
@@ -109,17 +110,13 @@ const ShopByCategory = () => {
       </div>
 
       {/* Additional Features */}
-      <div className='flex justify-center mt-10'>
-        <p className='text-gray-500 text-sm'>
-          Explore our wide range of categories and find your favorite items.
-        </p>
-      </div>
+     
       <div className='flex justify-center mt-8'>
         <Link
-          to='/categories'
+          to='/allvehicles'
           className='px-6 py-3 text-lg font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-600'
         >
-          Browse All Categories
+          View All Vehicle
         </Link>
       </div>
     </div>
@@ -127,4 +124,3 @@ const ShopByCategory = () => {
 };
 
 export default ShopByCategory;
-

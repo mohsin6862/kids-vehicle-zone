@@ -7,6 +7,7 @@ import Cars from "../Pages/Cars/Cars";
 import Truck from "../Pages/Truck/Truck";
 import Collectors from "../Pages/Collectors/Collectors";
 import Blogs from "../Pages/Blogs/Blogs";
+import AllVehicles from "../Pages/AllVehicles/AllVehicles";
 const router = createBrowserRouter([
     {
       path: "/",
@@ -50,6 +51,12 @@ const router = createBrowserRouter([
             path:'/collectors',
             element:<Collectors></Collectors>,
             loader: ()=>fetch('http://localhost:5000/collectors')
+
+        },
+        {
+            path:'/allvehicles',
+            element:<AllVehicles></AllVehicles>,
+            loader: ()=>fetch('http://localhost:5000/allvehicles')
 
         }
     ]

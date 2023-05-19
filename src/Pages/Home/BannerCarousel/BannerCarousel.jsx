@@ -6,6 +6,7 @@ import banner1 from '../../../assets/image/banner1.jpg';
 import banner2 from '../../../assets/image/banner2.jpg';
 import banner3 from '../../../assets/image/banner3.jpg';
 import banner4 from '../../../assets/image/banner4.jpg';
+import { Link } from 'react-router-dom';
 
 const BannerCarousel = () => {
   const settings = {
@@ -45,9 +46,12 @@ const BannerCarousel = () => {
           <span className="text-red-500">We</span> <span className="text-green-500">Sell</span> <span className="text-blue-500">what</span> <span className="text-purple-500">you</span> <span className="text-yellow-500">want!</span>
         </p>
         <div className="mt-8">
+          <Link to='/allvehicles'>
           <button className="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
             Explore Now
           </button>
+          </Link>
+          
         </div>
       </div>
     </div>
