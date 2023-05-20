@@ -14,7 +14,7 @@ const NotFoundPage = () => {
     <div className="flex flex-col items-center justify-center h-screen">
       <img
         className="w-64 h-64 mb-8"
-        src={logo} // Replace with your own image/gif URL
+        src={logo}
         alt="404 Not Found"
       />
       <h1 className="text-4xl font-bold mb-4">404 - Page Not Found</h1>

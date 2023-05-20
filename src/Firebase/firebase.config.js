@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCjJzjXVr2dEmP-F5IvXlVXMiFA5YUjVX4",
-  authDomain: "kids-vehicle-zone.firebaseapp.com",
-  projectId: "kids-vehicle-zone",
-  storageBucket: "kids-vehicle-zone.appspot.com",
-  messagingSenderId: "338020376276",
-  appId: "1:338020376276:web:44e9d63bf3624280b76541"
+  apiKey:import.meta.env.VITE_apiKey ,
+  authDomain:import.meta.env.VITE_authDomain,
+  projectId:import.meta.env.VITE_projectId ,
+  storageBucket:import.meta.env.VITE_storageBucket,
+  messagingSenderId:import.meta.env.VITE_messagingSenderId ,
+  appId:import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase
