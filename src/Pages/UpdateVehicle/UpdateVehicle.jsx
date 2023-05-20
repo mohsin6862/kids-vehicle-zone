@@ -11,13 +11,13 @@ const UpdateVehicle = () => {
         event.preventDefault()
         const form = event.target;
         const name = form.name.value;   
-        const chef = form.chef.value;
-        const supplier = form.supplier.value;
-        const taste = form.taste.value;
-        const details = form.details.value;
-        const category = form.category.value;
+        const title = form.title.value;
+        const description = form.description.value;
+        const price = form.price.value;
+        const ratings = form.ratings.value;
+        const stock = form.stock.value;
         const photo = form.photo.value;
-        const newVehicle = {name,chef,supplier,taste,details,category,photo}
+        const newVehicle = {name,title,description,price,ratings,stock,photo}
         console.log(newVehicle)
          
         fetch(`http://localhost:5000/addvehicle/${update?._id}`,{

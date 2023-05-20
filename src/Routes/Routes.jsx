@@ -12,11 +12,13 @@ import ViewDetails from "../Pages/ViewDetails/ViewDetails";
 import AddVehicles from "../Pages/AddVehicles/AddVehicles";
 import MyVehicles from "../Pages/MyVehicles/MyVehicles";
 import UpdateVehicle from "../Pages/UpdateVehicle/UpdateVehicle";
+import NotFoundPage from "../Pages/NotFoundPage/NotFoundPage";
 
 const router = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
+      errorElement: <NotFoundPage></NotFoundPage>,
       children:[
         {
 
