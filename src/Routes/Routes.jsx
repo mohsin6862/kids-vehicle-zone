@@ -13,6 +13,7 @@ import AddVehicles from "../Pages/AddVehicles/AddVehicles";
 import MyVehicles from "../Pages/MyVehicles/MyVehicles";
 import UpdateVehicle from "../Pages/UpdateVehicle/UpdateVehicle";
 import NotFoundPage from "../Pages/NotFoundPage/NotFoundPage";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -85,7 +86,7 @@ const router = createBrowserRouter([
         },
         {
             path:'/allvehicles/:id',
-            element:<ViewDetails></ViewDetails>,
+            element:<PrivateRoute><ViewDetails></ViewDetails></PrivateRoute>,
             loader:({params})=>fetch(`http://localhost:5000/allvehicles/${params.id}`)
 
         }

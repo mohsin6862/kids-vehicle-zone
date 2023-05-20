@@ -1,45 +1,64 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/image/logo1.png'
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
 const Navbar = () => {
-    const navItem = <> 
+  const { user, LogOut } = useContext(AuthContext);
+  const handleLogout = () => {
+    LogOut()
+}
+  const navItem = <>
     <li> <Link to='/'>Home </Link> </li>
     <li> <Link to='/blogs'>Blog </Link> </li>
     <li> <Link to='/allvehicles'>All Vehicles </Link> </li>
-    <li> <Link to='/addvehicles'>Add Vehicles </Link> </li>
-    <li> <Link to='/myvehicles'>My Vehicles </Link> </li>
-    <li> <Link to='/login'>Login</Link> </li>
-   
-    </>
-    return (
-        <div className="navbar bg-base-300 h-28 mb-5">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-            </label>
-            <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-              {navItem}
-            </ul>
-          </div>
-          <Link className="ml-20">
-            <img src={logo} className='w-32' alt="" />
-          </Link>
-        </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-          {navItem}
+    {user &&
+      <li> <Link to='/addvehicles'>Add Vehicles </Link> </li> 
+    }
+
+    {user &&
+      <button><li > <Link to='/myvehicles'>My Vehicles </Link> </li></button>
+    }
+     {
+      user && <div className="avatar online">
+      <div className="w-12 rounded-full">
+        <img title={user?.displayName} src={user?.photoURL} />
+      </div>
+    </div>
+    }
+  
+    { user? 
+      <li  onClick={handleLogout}> <Link>LogOut</Link> </li> : <li> <Link to='/login'>Login</Link> </li>}
+ 
+  </>
+  return (
+    <div className="navbar bg-base-300 h-28 mb-5">
+      <div className="navbar-start">
+        <div className="dropdown">
+          <label tabIndex={0} className="btn btn-ghost lg:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+          </label>
+          <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+            {navItem}
           </ul>
         </div>
-        <div className="navbar-end">
+        <Link className="ml-20">
+          <img src={logo} className='w-32' alt="" />
+        </Link>
+      </div>
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1">
+          {navItem}
+        </ul>
+      </div>
+      <div className="navbar-end">
         <div className="flex-none gap-2">
-    <div className="form-control">
-      <input type="text" placeholder="Search" className="input input-bordered" />
-    </div>
-    </div>
+          <div className="form-control">
+            <input type="text" placeholder="Search" className="input input-bordered" />
+          </div>
         </div>
       </div>
-    );
+    </div>
+  );
 };
 
 export default Navbar;

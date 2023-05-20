@@ -4,7 +4,7 @@ import signUp2 from '../../assets/image/signUp2.jpg'
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const SignUp = () => {
-  const {createUser}=useContext(AuthContext)
+  const {createUser,UpdateProfileInfo}=useContext(AuthContext)
   const handleSignUp=(event)=>{
       event.preventDefault();
 
@@ -12,11 +12,13 @@ const SignUp = () => {
       const name = form.name.value;
       const email = form.email.value;
       const password = form.password.value;
-      console.log(name,email,password)
+      const photoURL = form.photo.value;
+      console.log(name,email,password, photoURL)
 
       createUser(email,password)
       .then(result=>{
         const newUser = result.user
+        UpdateProfileInfo(result.user,name,photoURL)
         console.log(newUser)
       })
       .catch(error=>{
