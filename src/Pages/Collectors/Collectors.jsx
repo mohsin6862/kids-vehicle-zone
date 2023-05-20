@@ -1,9 +1,11 @@
 import React from 'react';
 import { RiStarSFill } from 'react-icons/ri';
 import { useLoaderData } from 'react-router-dom';
+import useTitle from '../../Hooks/useTitle';
 
 const Collectors = () => {
     const allCollectors = useLoaderData()
+    useTitle('Collectors')
     return (
         <div>
             <h1 className='text-center text-amber-600 font-bold text-5xl'>Our Top seller Collectors</h1>

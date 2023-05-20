@@ -6,29 +6,34 @@ const Navbar = () => {
   const { user, LogOut } = useContext(AuthContext);
   const handleLogout = () => {
     LogOut()
-}
+    .then(()=>{
+       localStorage.removeItem('kids-zone-access-token')
+    })
+    .catch(error =>{
+      console.log(error)
+    })
+  }
   const navItem = <>
     <li> <Link to='/'>Home </Link> </li>
     <li> <Link to='/blogs'>Blog </Link> </li>
-    <li> <Link to='/allvehicles'>All Vehicles </Link> </li>
+    <li> <Link to='/alltoys'>All Toys </Link> </li>
     {user &&
-      <li> <Link to='/addvehicles'>Add Vehicles </Link> </li> 
+      <button><li > <Link to='/myvehicles'>My Toys </Link> </li></button>
+    }
+    {user &&
+      <li> <Link to='/addvehicles'>Add Toys </Link> </li>
     }
 
-    {user &&
-      <button><li > <Link to='/myvehicles'>My Vehicles </Link> </li></button>
-    }
-     {
+    {user ?
+      <li onClick={handleLogout}> <Link>LogOut</Link> </li> : <li> <Link to='/login'>Login</Link> </li>}
+    {
       user && <div className="avatar online">
-      <div className="w-12 rounded-full">
-        <img title={user?.displayName} src={user?.photoURL} />
+        <div className="w-12 rounded-full">
+          <img title={user?.displayName} src={user?.photoURL} />
+        </div>
       </div>
-    </div>
     }
-  
-    { user? 
-      <li  onClick={handleLogout}> <Link>LogOut</Link> </li> : <li> <Link to='/login'>Login</Link> </li>}
- 
+
   </>
   return (
     <div className="navbar bg-base-300 h-28 mb-5">

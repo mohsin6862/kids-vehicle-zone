@@ -1,28 +1,42 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import signUp2 from '../../assets/image/signUp2.jpg'
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import useTitle from '../../Hooks/useTitle';
 
 const SignUp = () => {
   const {createUser,UpdateProfileInfo}=useContext(AuthContext)
+  
+  const [error ,setError]= useState('')
+  const [success,setSuccess]= useState('')
+  const navigate = useNavigate()
+
+     useTitle('SignUp')
   const handleSignUp=(event)=>{
       event.preventDefault();
-
       const form = event.target;
       const name = form.name.value;
       const email = form.email.value;
       const password = form.password.value;
       const photoURL = form.photo.value;
       console.log(name,email,password, photoURL)
+      setError('')
+      if(password.length<8){
+        setError('Password must be 8 characters or longer')
+        return
+    }
 
       createUser(email,password)
       .then(result=>{
         const newUser = result.user
         UpdateProfileInfo(result.user,name,photoURL)
+        setSuccess('Register Successful')
+        navigate('/')
         console.log(newUser)
       })
       .catch(error=>{
         console.log(error.message)
+        setError(error.message)
       })
 
      
@@ -61,8 +75,10 @@ const SignUp = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input type="password" placeholder="password" name='password' className="input input-bordered" />
-               
-             
+              </div>
+              <div>
+                <p className='text-red-600'>{error}</p>
+                <p className='text-green-600'>{success}</p>
               </div>
               <div className="form-control mt-6">
               

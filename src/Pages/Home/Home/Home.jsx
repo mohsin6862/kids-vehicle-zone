@@ -6,8 +6,10 @@ import FeaturedProduct from '../FeaturedProduct/FeaturedProduct';
 import CustomerReviewSection from '../CustomerReviewSection/CustomerReviewSection';
 import Contact from '../../Contact/Contact';
 import Gallery from '../Gallery/Gallery';
+import useTitle from '../../../Hooks/useTitle';
 
 const Home = () => {
+    useTitle('Home')
     return (
         <div>
             <BannerCarousel></BannerCarousel>

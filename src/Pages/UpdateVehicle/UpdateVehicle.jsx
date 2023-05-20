@@ -17,6 +17,7 @@ const UpdateVehicle = () => {
         const ratings = form.ratings.value;
         const stock = form.stock.value;
         const photo = form.photo.value;
+        
         const newVehicle = {name,title,description,price,ratings,stock,photo}
         console.log(newVehicle)
          
@@ -61,16 +62,16 @@ const UpdateVehicle = () => {
               </label>
               <label className="input-group">
               
-                <input type="text" name='name' placeholder="Enter Vehicle name" className="input input-bordered" />
+                <input type="text" defaultValue={update?.name} name='name' placeholder="Enter Vehicle name" className="input input-bordered" />
               </label>
               </div>
             <div className="form-control ">
               <label className="label">
-                <span className="label-text">Title</span>
+                <span className="label-text">Category</span>
               </label>
               <label className="input-group">
               
-                <input type="text" name='title' placeholder="Enter vehicle title" className="input input-bordered" />
+                <input type="text" defaultValue={update?.title} name='title' placeholder="Enter vehicle title" className="input input-bordered" />
               </label>
             </div>
             <div className="form-control ">
@@ -79,7 +80,7 @@ const UpdateVehicle = () => {
               </label>
               <label className="input-group">
               
-                <input type="text" name='description' placeholder="Enter vehicle description" className="input input-bordered" />
+                <input type="text" defaultValue={update?.description} name='description' placeholder="Enter vehicle description" className="input input-bordered" />
               </label>
             </div>
             <div className="form-control ">
@@ -88,7 +89,7 @@ const UpdateVehicle = () => {
               </label>
               <label className="input-group">
               
-                <input type="text" name='price' placeholder="Enter vehicle price" className="input input-bordered" />
+                <input type="text" defaultValue={update?.price} name='price' placeholder="Enter vehicle price" className="input input-bordered" />
               </label>
             </div>
             <div className="form-control ">
@@ -97,7 +98,7 @@ const UpdateVehicle = () => {
               </label>
               <label className="input-group">
               
-                <input type="text" name='ratings' placeholder="Enter vehicle ratings" className="input input-bordered" />
+                <input type="text" defaultValue={update?.ratings} name='ratings' placeholder="Enter vehicle ratings" className="input input-bordered" />
               </label>
             </div>
             <div className="form-control ">
@@ -106,7 +107,7 @@ const UpdateVehicle = () => {
               </label>
               <label className="input-group">
               
-                <input type="text" name='stock' placeholder="Enter vehicle stock" className="input input-bordered" />
+                <input type="text" defaultValue={update?.stock} name='stock' placeholder="Enter vehicle stock" className="input input-bordered" />
               </label>
             </div>
             </div>
@@ -116,7 +117,7 @@ const UpdateVehicle = () => {
               </label>
               <label >
               
-                <input  type="text" name='photo' placeholder="Enter vehicle Photo URL" className="input input-bordered w-full" />
+                <input  type="text" defaultValue={update?.photo} name='photo' placeholder="Enter vehicle Photo URL" className="input input-bordered w-full" />
               </label>
             </div>
             <div className=" w-[50%] mx-auto">

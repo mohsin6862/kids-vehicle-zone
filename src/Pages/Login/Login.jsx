@@ -3,12 +3,14 @@ import login2 from '../../assets/image/login2.jpg';
 import login1 from '../../assets/image/login1.jpg';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import useTitle from '../../Hooks/useTitle';
 
 const Login = () => {
 
     const {LogIn}= useContext(AuthContext)
     const location = useLocation()
     const navigate = useNavigate()
+    useTitle('LogIn')
     const from = location.state?.from?.pathname || '/';
   
       const handleLogin=(event)=>{
@@ -20,9 +22,25 @@ const Login = () => {
   
           LogIn(email,password)
           .then(result=>{
-            const loggedUser = result.user;
-            navigate(from,{replace:true})
+            const user = result.user;
+            const loggedUser = {email: user?.email}
             console.log(loggedUser)
+            fetch('http://localhost:5000/jwt',{
+                method:'POST',
+                headers:{
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(loggedUser)
+            })
+            .then(res=>res.json())
+                .then(data =>{
+                    console.log(data)
+                    localStorage.setItem('kids-zone-access-token',data.token);
+                    navigate(from,{replace:true})
+
+                })
+
+           
           })
           .catch(error=>{
             console.log(error.message)

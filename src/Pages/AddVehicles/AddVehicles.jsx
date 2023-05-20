@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { RiArrowLeftFill,} from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import useTitle from '../../Hooks/useTitle';
 
 const AddVehicles = () => {
+  const{user}= useContext(AuthContext)
+  useTitle('Add Toys')
     const handleAddVehicle =(event)=>{
         event.preventDefault()
         const form = event.target;
@@ -14,7 +18,10 @@ const AddVehicles = () => {
         const ratings = form.ratings.value;
         const stock = form.stock.value;
         const photo = form.photo.value;
-        const newVehicle = {name,title,description,price,ratings,stock,photo}
+        const email = form.email.value;
+        const yourname = form.yourname.value;
+        form.reset('')
+        const newVehicle = {name,title,description,price,ratings,stock,photo,email,yourname}
         console.log(newVehicle)
          
         fetch('http://localhost:5000/addvehicle',{
@@ -46,12 +53,30 @@ const AddVehicles = () => {
         <>
         <Link to='/'>  <h3 className='text-2xl mt-5 ml-5 flex items-center'><RiArrowLeftFill></RiArrowLeftFill><span className='ml-3'>Back to home</span></h3></Link>
           <h1 className="text-amber-600 font-bold text-5xl text-center my-8">Add new Vehicle</h1>
-          <p className='text-center w-[60%] mx-auto mt-5'>It is a long established fact that a reader will be distraceted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.</p>
+          <p className='text-center w-[60%] mx-auto mt-5'>You can add your vehicles to our website, so that you can see it letter. And one more opertunaty for you, you csn sell your vehicles through our website </p>
     
           <div className='w-full mx-auto mt-5'>
     
             <form onSubmit={handleAddVehicle} >
             <div className='w-[50%] mx-auto grid grid-cols-2 gap-8'>
+            <div className="form-control ">
+              <label className="label">
+                <span className="label-text">Your Name</span>
+              </label>
+              <label className="input-group">
+              
+                <input type="text" name='yourname' placeholder="Enter your name" className="input input-bordered" />
+              </label>
+              </div>
+            <div className="form-control ">
+              <label className="label">
+                <span className="label-text">Your Email</span>
+              </label>
+              <label className="input-group">
+              
+                <input type="text" name='email' placeholder="Enter Your Email" defaultValue={user?.email} readOnly className="input input-bordered" />
+              </label>
+              </div>
             <div className="form-control ">
               <label className="label">
                 <span className="label-text">Vehicle Name</span>
@@ -63,7 +88,7 @@ const AddVehicles = () => {
               </div>
             <div className="form-control ">
               <label className="label">
-                <span className="label-text">Title</span>
+                <span className="label-text">Category</span>
               </label>
               <label className="input-group">
               

@@ -1,10 +1,12 @@
 import React from 'react';
 import { RiStarSFill } from 'react-icons/ri';
 import { useLoaderData } from 'react-router-dom';
+import useTitle from '../../Hooks/useTitle';
 
 const Truck = () => {
     const allTruck = useLoaderData()
     console.log(allTruck)
+    useTitle('Trucks')
     return (
         <div>
             <h1 className='text-center text-amber-600 font-bold text-5xl'>Our Top seller Truck</h1>

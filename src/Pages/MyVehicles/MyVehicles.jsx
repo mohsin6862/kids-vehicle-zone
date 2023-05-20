@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
-import { RiDeleteBinFill, RiEdit2Fill, RiEditFill, RiEditLine } from 'react-icons/ri';
-import { Link, useLoaderData } from 'react-router-dom';
+
+
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import ViewVehicles from '../AllVehicles/ViewVehicles/ViewVehicles';
 import Swal from 'sweetalert2';
+import useTitle from '../../Hooks/useTitle';
 
 const MyVehicles = () => {
-    const MyVehicles = useLoaderData()
-    console.log(MyVehicles)
-    const [deleteVehicle ,setDeleteVehicle]= useState(MyVehicles)
+    const{user} = useContext(AuthContext)
+    const [myVehicles,setMyVehicles] =useState()
+    const [deleteVehicle ,setDeleteVehicle]= useState(myVehicles)
+    useTitle('My Toys')
+    const url =` http://localhost:5000/addvehicle?email=${user?.email}`
+    useEffect(()=>{
+        fetch(url)
+        .then(res=>res.json())
+        .then(data =>setMyVehicles(data))
+    },[])
 
     const handleDelete = (id)=>{
         Swal.fire({
@@ -45,37 +55,17 @@ const MyVehicles = () => {
 
 
     }
+
     return (
         <div>
-            <h1 className='text-center text-amber-600 font-bold text-5xl'>My vehicles</h1>
-            <div className='mt-10 grid grid-cols-1 lg:grid-cols-3 gap-10'>
-                {
-                    deleteVehicle?.map(vehicle => <>
-                        <div className="card w-96 bg-base-100 shadow-xl">
-                            <figure><img src={vehicle?.photo} alt="Shoes" /></figure>
-                            <div className="card-body">
-                                <h2 className="card-title">
-                                    {vehicle?.name}
+             <h1 className='text-center text-amber-600 font-bold text-5xl my-12'>My vehicles</h1>
+             <div className='mt-10 grid grid-cols-1 lg:grid-cols-3 gap-10 my-12'>
+             {
 
-                                </h2>
-                                <p>{vehicle?.title}</p>
-                                <p>Ratings: {vehicle?.ratings} </p>
-                                <p>Price: {vehicle?.price} BDT</p>
-                                <p>Stock: {vehicle?.stock} Left only</p>
-                                <div className="card-actions justify-end">
-                              <Link to={`/updatevehicle/${vehicle?._id}`}>  <button  className="btn btn-circle btn-outline text-xl">
-                                      <RiEditLine/>
-                                    </button></Link>
-                                    <button onClick={()=>handleDelete(vehicle?._id)} className="btn btn-circle btn-outline text-xl">
-                                      <RiDeleteBinFill/>
-                                    </button>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </>)
-                }
-            </div>
+                myVehicles?.map( vehicles => <ViewVehicles key={vehicles?._id} vehicles={vehicles} handleDelete={handleDelete}></ViewVehicles>)
+
+             }
+        </div>
         </div>
     );
 };
