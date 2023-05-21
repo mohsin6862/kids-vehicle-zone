@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import useTitle from '../../Hooks/useTitle';
+import Swal from 'sweetalert2';
 
 const AllToys = () => {
   const toys = useLoaderData();
@@ -32,6 +33,19 @@ const AllToys = () => {
     );
     setSortedToys(filteredToys);
   };
+
+  const handleView = () => {
+    Swal.fire(
+      {
+        title: 'warning',
+        text: 'To see view details you have to login first if you are already logged in please ignored this warning',
+        type: 'success',
+        icon: 'warning',
+        confirmButtonText: 'Done'
+
+      }
+    )
+  }
 
   return (
     <div>
@@ -106,7 +120,7 @@ const AllToys = () => {
                 <td>{toy?.ratings} Star</td>
                 <td>
                   <Link to={`/view/${toy?._id}`}>
-                    <button className="btn btn-primary">View</button>
+                    <button onClick={handleView} className="btn btn-primary">View</button>
                   </Link>
                 </td>
               </tr>

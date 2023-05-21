@@ -2,11 +2,25 @@ import React from 'react';
 import { RiStarSFill } from 'react-icons/ri';
 import { Link, useLoaderData } from 'react-router-dom';
 import useTitle from '../../Hooks/useTitle';
+import Swal from 'sweetalert2';
 
 const AllVehicles = () => {
     const allvehicles = useLoaderData()
     console.log(allvehicles)
     useTitle('All Vehicles')
+    const handleViewDetails = () => {
+        Swal.fire(
+            {
+                title: 'warning',
+                text: 'To see view details you have to login first if you are already logged in please ignored this warning',
+                type: 'success',
+                icon: 'warning',
+                confirmButtonText: 'Done'
+
+            }
+        )
+    }
+
     return (
         <div>
             <h1 className='text-amber-600 font-bold text-5xl text-center my-8'>All Vehicles</h1>
@@ -23,7 +37,7 @@ const AllVehicles = () => {
                             <p className='font-bold'>price: {cars?.price} BTD</p>
                             <p>Stock: {cars?.stock} Left only </p>
                             <div className="card-actions justify-end">
-                        <Link to={`/allvehicles/${cars?._id}`}><button className="btn btn-primary">View Details</button></Link>
+                                <Link to={`/allvehicles/${cars?._id}`} onClick={handleViewDetails}><button className="btn btn-primary">View Details</button></Link>
                             </div>
                         </div>
                     </div></>)

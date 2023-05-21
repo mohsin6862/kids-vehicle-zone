@@ -1,5 +1,4 @@
 
-
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import ViewVehicles from '../AllVehicles/ViewVehicles/ViewVehicles';
@@ -7,17 +6,24 @@ import Swal from 'sweetalert2';
 import useTitle from '../../Hooks/useTitle';
 
 const MyVehicles = () => {
-    const{user} = useContext(AuthContext)
+    const{user,loading} = useContext(AuthContext)
     const [myVehicles,setMyVehicles] =useState()
-    const [deleteVehicle ,setDeleteVehicle]= useState(myVehicles)
+
     useTitle('My Toys')
-    const url =` http://localhost:5000/addvehicle?email=${user?.email}`
+    const url =` https://toy-shop-server-umber.vercel.app/addvehicle?email=${user?.email}`
     useEffect(()=>{
-        fetch(url)
+        fetch(url,{
+            method :'GET',
+            headers :{
+                authorization : `Bearer ${localStorage.getItem('kids-zone-access-token')}`
+            }
+        })
         .then(res=>res.json())
         .then(data =>setMyVehicles(data))
-    },[])
-
+    },[url])
+    if(loading){
+        return  <progress className="progress progress-success w-56"></progress>
+    }
     const handleDelete = (id)=>{
         Swal.fire({
             title: 'Are you sure?',
@@ -31,7 +37,7 @@ const MyVehicles = () => {
           
         
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/addveicle/${id}`,{
+                fetch(`https://toy-shop-server-umber.vercel.app/addveicle/${id}`,{
                     method:'DELETE'
                 })
                 .then(res=> res.json())
@@ -44,8 +50,8 @@ const MyVehicles = () => {
                         'success'
                       )
 
-                      const remaining = deleteVehicle?.filter(v => v._id !== id)
-                      setDeleteVehicle(remaining)
+                      const remaining = myVehicles?.filter(v => v._id !== id)
+                      setMyVehicles(remaining)
                   
                    }
                 })

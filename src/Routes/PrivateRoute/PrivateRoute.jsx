@@ -12,7 +12,7 @@ const PrivateRoute = ({children}) => {
     console.log(location)
 
     if(loading){
-        return  <div className="radial-progress" style={{"--value":80}}>80%</div>
+        return  <progress className="progress progress-success w-56"></progress>
     }
     if(user){
         return children;

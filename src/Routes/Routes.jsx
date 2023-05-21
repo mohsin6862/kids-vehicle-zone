@@ -61,67 +61,67 @@ const router = createBrowserRouter([
         {
             path:'/updatevehicle/:id',
             element:<UpdateVehicle></UpdateVehicle>,
-            loader: ({params})=>fetch(`http://localhost:5000/addvehicle/${params.id}`)
+            loader: ({params})=>fetch(`https://toy-shop-server-umber.vercel.app/addvehicle/${params.id}`)
 
         },
         {
             path:'/alltoys',
             element:<AllToys></AllToys>,
-            loader: ()=>fetch('http://localhost:5000/addvehicle')
+            loader: ()=>fetch('https://toy-shop-server-umber.vercel.app/addvehicle')
 
         },
         {
             path:'/view/:id',
             element:<PrivateRoute><View></View></PrivateRoute>,
-            loader: ({params})=>fetch(`http://localhost:5000/addvehicle/${params.id}`)
+            loader: ({params})=>fetch(`https://toy-shop-server-umber.vercel.app/addvehicle/${params.id}`)
 
         },
         {
             path:'/cars',
             element:<Cars></Cars>,
-            loader: ()=>fetch('http://localhost:5000/cars')
+            loader: ()=>fetch('https://toy-shop-server-umber.vercel.app/cars')
 
         },
         {
             path:'/cardetails/:id',
-            element:<CarDetails></CarDetails>,
-            loader: ({params})=>fetch(`http://localhost:5000/cars/${params.id}`)
+            element:<PrivateRoute><CarDetails></CarDetails></PrivateRoute>,
+            loader: ({params})=>fetch(`https://toy-shop-server-umber.vercel.app/cars/${params.id}`)
 
         },
         {
             path:'/trucks',
             element:<Truck></Truck>,
-            loader: ()=>fetch('http://localhost:5000/truck')
+            loader: ()=>fetch('https://toy-shop-server-umber.vercel.app/truck')
 
         },
         {
             path:'/truckdetails/:id',
-            element:<TruckDetails></TruckDetails>,
-            loader: ({params})=>fetch(`http://localhost:5000/truck/${params.id}`)
+            element:<PrivateRoute><TruckDetails></TruckDetails></PrivateRoute>,
+            loader: ({params})=>fetch(`https://toy-shop-server-umber.vercel.app/truck/${params.id}`)
 
         },
         {
             path:'/collectors',
             element:<Collectors></Collectors>,
-            loader: ()=>fetch('http://localhost:5000/collectors')
+            loader: ()=>fetch('https://toy-shop-server-umber.vercel.app/collectors')
 
         },
         {
             path:'/collectordetails/:id',
-            element:<CollectorDetails></CollectorDetails>,
-            loader: ({params})=>fetch(`http://localhost:5000/collectors/${params.id}`)
+            element:<PrivateRoute><CollectorDetails></CollectorDetails></PrivateRoute>,
+            loader: ({params})=>fetch(`https://toy-shop-server-umber.vercel.app/collectors/${params.id}`)
 
         },
         {
             path:'/allvehicles',
             element:<AllVehicles></AllVehicles>,
-            loader: ()=>fetch('http://localhost:5000/allvehicles')
+            loader: ()=>fetch('https://toy-shop-server-umber.vercel.app/allvehicles')
 
         },
         {
             path:'/allvehicles/:id',
             element:<PrivateRoute><ViewDetails></ViewDetails></PrivateRoute>,
-            loader:({params})=>fetch(`http://localhost:5000/allvehicles/${params.id}`)
+            loader:({params})=>fetch(`https://toy-shop-server-umber.vercel.app/allvehicles/${params.id}`)
 
         }
     ]

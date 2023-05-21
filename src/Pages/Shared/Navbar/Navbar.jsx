@@ -56,7 +56,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <div className="flex-none gap-2">
+        <div className="hidden lg:flex gap-2">
           <div className="form-control">
             <input type="text" placeholder="Search" className="input input-bordered" />
           </div>

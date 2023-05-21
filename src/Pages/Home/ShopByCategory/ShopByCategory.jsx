@@ -29,27 +29,24 @@ const ShopByCategory = () => {
           <TabList className='flex justify-center space-x-6'>
             <Tab>
               <h3
-                className={`text-2xl font-bold text-center mt-4 cursor-pointer ${
-                  isActiveRoute('/cars') ? 'text-blue-500' : 'text-gray-500'
-                }`}
+                className={`text-2xl font-bold text-center mt-4 cursor-pointer ${isActiveRoute('/cars') ? 'text-blue-500' : 'text-gray-500'
+                  }`}
               >
                 Cars
               </h3>
             </Tab>
             <Tab>
               <h3
-                className={`text-2xl font-bold text-center mt-4 cursor-pointer ${
-                  isActiveRoute('/trucks') ? 'text-blue-500' : 'text-gray-500'
-                }`}
+                className={`text-2xl font-bold text-center mt-4 cursor-pointer ${isActiveRoute('/trucks') ? 'text-blue-500' : 'text-gray-500'
+                  }`}
               >
                 Trucks
               </h3>
             </Tab>
             <Tab>
               <h3
-                className={`text-2xl font-bold text-center mt-4 cursor-pointer ${
-                  isActiveRoute('/collectors') ? 'text-blue-500' : 'text-gray-500'
-                }`}
+                className={`text-2xl font-bold text-center mt-4 cursor-pointer ${isActiveRoute('/collectors') ? 'text-blue-500' : 'text-gray-500'
+                  }`}
               >
                 Collectors
               </h3>
@@ -123,7 +120,7 @@ const ShopByCategory = () => {
                   to='/trucks'
                   className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-6 py-3 text-2xl  text-amber-600  font-semibold  bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0) '
                 >
-                 New Arrival
+                  New Arrival
                 </Link>
               </div>
               <div className='relative'>
@@ -175,7 +172,7 @@ const ShopByCategory = () => {
                   to='/collectors'
                   className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-6 py-3 text-2xl  text-amber-600  font-semibold  bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0) '
                 >
-                 New Arrival
+                  New Arrival
                 </Link>
               </div>
               <div className='relative'>
@@ -215,7 +212,7 @@ const ShopByCategory = () => {
         </Tabs>
       </div>
 
-      {/* Additional Features */}
+
 
       <div className='flex justify-center mt-8'>
         <Link
