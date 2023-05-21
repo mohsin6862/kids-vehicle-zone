@@ -1,11 +1,24 @@
 import React from 'react';
 import { RiStarSFill } from 'react-icons/ri';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import useTitle from '../../Hooks/useTitle';
+import Swal from 'sweetalert2';
 
 const Collectors = () => {
     const allCollectors = useLoaderData()
     useTitle('Collectors')
+    const handleViewDetails =()=>{
+        Swal.fire(
+          {
+           title: 'warning',
+           text: 'To see view details you have to login first if you are already logged in please ignored this warning',
+           type: 'success',
+           icon:'warning',
+           confirmButtonText: 'Done'
+           
+          }
+          )
+      }
     return (
         <div>
             <h1 className='text-center text-amber-600 font-bold text-5xl'>Our Top seller Collectors</h1>
@@ -21,7 +34,7 @@ const Collectors = () => {
                             <p className='font-bold'>price: {collector?.price} BTD</p>
                             <p>Stock: {collector?.stock} Left only </p>
                             <div className="card-actions justify-end">
-                                <button className="btn btn-primary">Buy Now</button>
+                            <Link onClick={handleViewDetails} to={`/collectordetails/${collector?._id}`}> <button className="btn btn-primary">View Details</button></Link>
                             </div>
                         </div>
                     </div></>)

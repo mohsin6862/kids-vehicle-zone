@@ -15,6 +15,11 @@ import UpdateVehicle from "../Pages/UpdateVehicle/UpdateVehicle";
 import NotFoundPage from "../Pages/NotFoundPage/NotFoundPage";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import AllToys from "../Pages/AllToys/AllToys";
+import View from "../Pages/ViewAllToysDetails/View";
+import CarDetails from "../Pages/Cars/CarDetails";
+import CollectorDetails from "../Pages/Collectors/CollectorDetails";
+import TruckDetails from "../Pages/Truck/TruckDetails";
+
 
 const router = createBrowserRouter([
     {
@@ -66,9 +71,21 @@ const router = createBrowserRouter([
 
         },
         {
+            path:'/view/:id',
+            element:<PrivateRoute><View></View></PrivateRoute>,
+            loader: ({params})=>fetch(`http://localhost:5000/addvehicle/${params.id}`)
+
+        },
+        {
             path:'/cars',
             element:<Cars></Cars>,
             loader: ()=>fetch('http://localhost:5000/cars')
+
+        },
+        {
+            path:'/cardetails/:id',
+            element:<CarDetails></CarDetails>,
+            loader: ({params})=>fetch(`http://localhost:5000/cars/${params.id}`)
 
         },
         {
@@ -78,9 +95,21 @@ const router = createBrowserRouter([
 
         },
         {
+            path:'/truckdetails/:id',
+            element:<TruckDetails></TruckDetails>,
+            loader: ({params})=>fetch(`http://localhost:5000/truck/${params.id}`)
+
+        },
+        {
             path:'/collectors',
             element:<Collectors></Collectors>,
             loader: ()=>fetch('http://localhost:5000/collectors')
+
+        },
+        {
+            path:'/collectordetails/:id',
+            element:<CollectorDetails></CollectorDetails>,
+            loader: ({params})=>fetch(`http://localhost:5000/collectors/${params.id}`)
 
         },
         {

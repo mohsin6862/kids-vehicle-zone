@@ -1,15 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import login2 from '../../assets/image/login2.jpg';
-import login1 from '../../assets/image/login1.jpg';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import useTitle from '../../Hooks/useTitle';
+import Swal from 'sweetalert2';
+import { RiGoogleFill } from 'react-icons/ri';
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import app from '../../Firebase/firebase.config';
 
 const Login = () => {
-
+    const [error , setError]= useState('')
+    const [success , setSuccess]=useState('')
     const {LogIn}= useContext(AuthContext)
     const location = useLocation()
     const navigate = useNavigate()
+    const GoogleProvider = new GoogleAuthProvider();
+  
+    const auth = getAuth(app);
     useTitle('LogIn')
     const from = location.state?.from?.pathname || '/';
   
@@ -19,12 +26,24 @@ const Login = () => {
           const email = form.email.value;
           const password = form.password.value;
           console.log(email,password)
+          setError('')
+      
   
           LogIn(email,password)
           .then(result=>{
             const user = result.user;
             const loggedUser = {email: user?.email}
             console.log(loggedUser)
+            setSuccess(Swal.fire(
+              {
+               title: 'Success',
+               text: 'Log in successfully',
+               type: 'success',
+               icon:'success',
+               confirmButtonText: 'Done'
+               
+              }
+               ))
             fetch('http://localhost:5000/jwt',{
                 method:'POST',
                 headers:{
@@ -35,6 +54,7 @@ const Login = () => {
             .then(res=>res.json())
                 .then(data =>{
                     console.log(data)
+                   
                     localStorage.setItem('kids-zone-access-token',data.token);
                     navigate(from,{replace:true})
 
@@ -44,7 +64,31 @@ const Login = () => {
           })
           .catch(error=>{
             console.log(error.message)
+            setError(error.message)
           })
+        }
+        const handleGoogle = () => {
+          signInWithPopup(auth, GoogleProvider)
+            .then(result => {
+              const signed = result.user
+              console.log(signed)
+              setSuccess(Swal.fire(
+                {
+                 title: 'Success',
+                 text: 'Log in successfully',
+                 type: 'success',
+                 icon:'success',
+                 confirmButtonText: 'Done'
+                 
+                }
+                 ))
+                 navigate(from,{replace:true})
+            })
+            .catch(error => {
+              console.log(error)
+              setError(error.message)
+            })
+      
         }
 
   return (
@@ -72,6 +116,10 @@ const Login = () => {
                   <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                 </label>
               </div>
+              <div>
+                <p className='text-red-500 '>{error}</p>
+                <p className='text-green-500 '>{success}</p>
+              </div>
               <div className="form-control mt-6">
                 <input className="btn btn-primary" type="submit" value="LogIn" />
               </div>
@@ -84,6 +132,11 @@ const Login = () => {
                 </span>{' '}
               </p>
             </label>
+              <hr className='text-slate-400' />
+              <div className='text-center font-bold'> 
+              <h3 className='text-xl'>LogIn With Google</h3>
+                <button><RiGoogleFill onClick={handleGoogle} className='text-2xl w-full mx-auto mt-4'></RiGoogleFill></button>
+              </div>
           </div>
         </div>
       </div>

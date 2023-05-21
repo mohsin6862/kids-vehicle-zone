@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import signUp2 from '../../assets/image/signUp2.jpg'
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import useTitle from '../../Hooks/useTitle';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
   const {createUser,UpdateProfileInfo}=useContext(AuthContext)
@@ -30,7 +31,16 @@ const SignUp = () => {
       .then(result=>{
         const newUser = result.user
         UpdateProfileInfo(result.user,name,photoURL)
-        setSuccess('Register Successful')
+        setSuccess(Swal.fire(
+          {
+           title: 'Success',
+           text: 'Register successfully',
+           type: 'success',
+           icon:'success',
+           confirmButtonText: 'Done'
+           
+          }
+           ))
         navigate('/')
         console.log(newUser)
       })

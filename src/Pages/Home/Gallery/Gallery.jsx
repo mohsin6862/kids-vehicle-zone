@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Gallery = () => {
   const images = [
@@ -27,26 +29,20 @@ const Gallery = () => {
       category: 'Vintage Car',
     },
     {
-      id: 4,
-      title: 'Vintage Car 2',
-      imageUrl: 'https://www.tnttoytrucks.com/sitebuilder/images/Hubley1010-435x315.jpg',
-      category: 'Vintage Car',
-    },
-    {
-      id: 4,
-      title: 'Vintage Car 2',
+      id: 5,
+      title: 'Vintage Car 3',
       imageUrl: 'https://image.made-in-china.com/44f3j00nfQTlmbKfqkj/BMW-Concept-Toy-Car.jpg',
       category: 'Vintage Car',
     },
     {
-      id: 4,
-      title: 'Vintage Car 2',
+      id: 6,
+      title: 'Vintage Car 4',
       imageUrl: 'https://thumbs.dreamstime.com/b/vintage-toy-car-4694000.jpg',
       category: 'Vintage Car',
     },
     {
-      id: 4,
-      title: 'Vintage Car 2',
+      id: 7,
+      title: 'Vintage Car 5',
       imageUrl: 'https://ae01.alicdn.com/kf/HTB18s5QlY_I8KJjy1Xaq6zsxpXa3/Kids-mini-Classic-Model-Car-Toy-Vintage-Convertible-Pull-Back-Plastic-Metal-Flashing-Musical-Model-Cars.jpg',
       category: 'Vintage Car',
     },
@@ -62,6 +58,10 @@ const Gallery = () => {
     setSelectedImage(null);
   };
 
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <div className="container mx-auto py-10">
       <h2 className="text-amber-600 font-bold text-5xl text-center my-8">Gallery</h2>
@@ -71,13 +71,17 @@ const Gallery = () => {
             key={image.id}
             className="relative overflow-hidden rounded-lg shadow-lg cursor-pointer transform hover:scale-105 transition-transform duration-300"
             onClick={() => openImageModal(image)}
+            data-aos="fade-up"
           >
             <img
               className="object-cover w-full h-64"
               src={image.imageUrl}
               alt={image.title}
             />
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black via-transparent to-transparent">
+            <div
+              className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black via-transparent to-transparent"
+              data-aos="fade-down"
+            >
               <div className="text-white text-center p-4">
                 <h3 className="text-lg font-semibold">{image.title}</h3>
                 <p className="text-sm">{image.category}</p>

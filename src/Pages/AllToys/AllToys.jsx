@@ -98,9 +98,9 @@ const AllToys = () => {
                   </div>
                 </td>
                 <td>
-                  {user?.name}
+                  {toy?.yourname}
                   <br />
-                  <span className="badge badge-ghost badge-sm">{user?.email}</span>
+                  <span className="badge badge-ghost badge-sm">{toy?.email}</span>
                 </td>
                 <td>{toy?.price} bdt</td>
                 <td>{toy?.ratings} Star</td>
