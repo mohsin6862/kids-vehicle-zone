@@ -13,8 +13,7 @@ const AllToys = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [totalToys, setTotalToys] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10; // Change this value according to your desired number of items per page
-
+  const itemsPerPage = 20; 
   useEffect(() => {
     fetch('https://toy-shop-server-umber.vercel.app/total-toys')
       .then((res) => res.json())
@@ -29,7 +28,7 @@ const AllToys = () => {
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentToys = sortedToys.slice(indexOfFirstItem, indexOfLastItem);
     setSortedToys(currentToys);
-  }, [currentPage]);
+  }, [currentPage, sortedToys]);
 
   const totalPages = Math.ceil(totalToys / itemsPerPage);
 
@@ -74,6 +73,8 @@ const AllToys = () => {
   };
 
   const renderPagination = () => {
+    if (totalPages === 1) return null;
+
     const pageNumbers = [];
 
     for (let i = 1; i <= totalPages; i++) {
@@ -99,7 +100,7 @@ const AllToys = () => {
 
   return (
     <div>
-      <h1 className="text-5xl font-bold text-amber-600 text-center my-12">All toys </h1>
+      <h1 className="text-5xl font-bold text-amber-600 text-center my-12">All toys</h1>
 
       <div className="my-8">
         <button onClick={handleHigh} className="btn btn-sm">
