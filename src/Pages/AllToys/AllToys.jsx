@@ -13,7 +13,7 @@ const AllToys = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [totalToys, setTotalToys] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 20; 
+  const itemsPerPage = 20;
   useEffect(() => {
     fetch('https://toy-shop-server-umber.vercel.app/total-toys')
       .then((res) => res.json())
@@ -87,9 +87,8 @@ const AllToys = () => {
           <button
             key={number}
             onClick={() => handlePageChange(number)}
-            className={`mx-1 ${
-              currentPage === number ? 'bg-blue-500 text-white' : 'bg-gray-300'
-            } rounded-md px-3 py-1`}
+            className={`mx-1 ${currentPage === number ? 'bg-blue-500 text-white' : 'bg-gray-300'
+              } rounded-md px-3 py-1`}
           >
             {number}
           </button>
