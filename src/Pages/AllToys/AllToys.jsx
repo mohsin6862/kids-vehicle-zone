@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import useTitle from '../../Hooks/useTitle';
@@ -11,17 +11,40 @@ const AllToys = () => {
   const [sortedToys, setSortedToys] = useState(toys);
   const [filterOption, setFilterOption] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
+  const [totalToys, setTotalToys] = useState();
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10; // Change this value according to your desired number of items per page
+
+  useEffect(() => {
+    fetch('https://toy-shop-server-umber.vercel.app/total-toys')
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setTotalToys(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentToys = sortedToys.slice(indexOfFirstItem, indexOfLastItem);
+    setSortedToys(currentToys);
+  }, [currentPage]);
+
+  const totalPages = Math.ceil(totalToys / itemsPerPage);
 
   const handleHigh = () => {
     const sorted = [...toys].sort((a, b) => b.price - a.price);
     setSortedToys(sorted);
     setFilterOption('highToLow');
+    setCurrentPage(1);
   };
 
   const handleLow = () => {
     const sorted = [...toys].sort((a, b) => a.price - b.price);
     setSortedToys(sorted);
     setFilterOption('lowToHigh');
+    setCurrentPage(1);
   };
 
   const handleSearch = (event) => {
@@ -32,20 +55,47 @@ const AllToys = () => {
       toy.name.toLowerCase().includes(query)
     );
     setSortedToys(filteredToys);
+    setCurrentPage(1);
   };
 
   const handleView = () => {
-    Swal.fire(
-      {
-        title: 'warning',
-        text: 'To see view details you have to login first if you are already logged in please ignored this warning',
-        type: 'success',
-        icon: 'warning',
-        confirmButtonText: 'Done'
+    Swal.fire({
+      title: 'Warning',
+      text:
+        'To see view details you have to login first. If you are already logged in, please ignore this warning.',
+      type: 'success',
+      icon: 'warning',
+      confirmButtonText: 'Done',
+    });
+  };
 
-      }
-    )
-  }
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const renderPagination = () => {
+    const pageNumbers = [];
+
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(i);
+    }
+
+    return (
+      <div className="flex justify-center my-4">
+        {pageNumbers.map((number) => (
+          <button
+            key={number}
+            onClick={() => handlePageChange(number)}
+            className={`mx-1 ${
+              currentPage === number ? 'bg-blue-500 text-white' : 'bg-gray-300'
+            } rounded-md px-3 py-1`}
+          >
+            {number}
+          </button>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <div>
@@ -128,6 +178,8 @@ const AllToys = () => {
           </table>
         </div>
       ))}
+
+      {renderPagination()}
     </div>
   );
 };
